@@ -1,0 +1,34 @@
+<div>
+  <div class="text-center" *ngIf="dataStatus==false">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="dataStatus==true">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Model Yılı</th>
+          <th>Fiyat</th>
+          <th>Açıklama</th>
+          <th>Renk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let car of cars"
+          (click)="setCurrentCar(car)"
+          routerLink="cars/{{ car.carId }}"
+        >
+          <th>{{ car.brandName }}</th>
+          <th>{{ car.modelYear }}</th>
+          <th>{{ car.dailyPrice }}</th>
+          <th>{{ car.carName }}</th>
+          <th>{{ car.colorName }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
