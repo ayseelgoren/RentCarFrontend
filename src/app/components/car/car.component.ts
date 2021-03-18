@@ -69,4 +69,6 @@ export class CarComponent implements OnInit {
     this.currentCar = car;
     console.log(car);
   }
+
+  
 }

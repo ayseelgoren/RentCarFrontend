@@ -12,7 +12,7 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-detail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
-  imagePath = "https://localhost:44362/"
+  imagePath = "https://localhost:44362/Images/"
   carImageDetails: CarImageDetail = {
     car:{
       id: 0,
@@ -54,6 +54,9 @@ export class CarDetailComponent implements OnInit {
     });
   }
 
+  getImage(image : CarImage){
+    return this.imagePath+image.imagePath.replace("\\","/")
+  }
  
 
   getSliderClassName(index:Number){
