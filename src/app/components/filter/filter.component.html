@@ -1,0 +1,51 @@
+<div>
+  <div style="margin-top: 10%">
+    <h4 for="brand">Markalar</h4>
+    <select
+      class="form-select"
+      name="brand"
+      id="brand"
+      class="form-control"
+      [(ngModel)]="selectedBrand"
+      aria-label="Default select example"
+      
+    >
+      <option *ngFor="let brand of brands" [value]="brand.id">
+        {{ brand.name }}
+      </option>
+    </select>
+
+    <button
+      class="btn btn-success"
+      style="margin-top: 10%; margin-left: 70%"
+      (click)="currentBrand(selectedBrand)"
+      routerLink="/cars/brand/{{selectedBrand}}"
+    >
+      Filtrele
+    </button>
+  </div>
+  <div style="margin-top: 10%">
+    <h4 for="color">Renkler</h4>
+    <select
+      class="form-select"
+      name="color"
+      id="color"
+      class="form-control"
+      [(ngModel)]="selectedColor"
+      aria-label="Default select example"
+    >
+      <option *ngFor="let color of colors" [value]="color.id">
+        {{ color.name }}
+      </option>
+    </select>
+
+    <button
+      class="btn btn-success"
+      style="margin-top: 10%; margin-left: 70%"
+      (click)="currentColor(selectedColor)"
+      routerLink="/cars/color/{{selectedColor}}"
+    >
+      Filtrele
+    </button>
+  </div>
+</div>

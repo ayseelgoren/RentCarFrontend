@@ -1,0 +1,37 @@
+<br>
+  <div class="card text-center">
+    <div class="card-header">
+    <b><h1> Kiralama İşlemi</h1></b>
+    </div>
+    <div class="card-body">
+
+     <b><h5 class="card-title" *ngIf="car"> Araç : {{car.description}}</h5></b><br>
+     <b><h5 class="card-title" *ngIf="car"> Fiyat : {{car.dailyPrice}} ₺</h5></b><br>
+     <form #rentalAddForm="ngForm" (ngSubmit)="addRental(rentalAddForm)">
+
+        <div class="form-group w-100">
+            <label><b>Kiralama Tarihi</b></label>
+            <input type="date" class="form-control"
+            #rentDate="ngModel" [(ngModel)]="rentalModel.rentDate" id="rentdate" name="rentdate" required>
+      
+        </div>
+      
+        <div class="form-group w-100">
+            <label><b>Dönüş Tarihi</b></label>
+            <input type="date" class="form-control"
+            #returnDate="ngModel" [(ngModel)]="rentalModel.returnDate" id="returndate" name="returndate" required>
+          
+        </div>
+      <br>
+        <div class="row text-center">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success w-100" >
+              Arabayı Kirala
+            </button>
+          </div>
+        </div>
+      
+      </form>
+    </div>
+
+  </div>

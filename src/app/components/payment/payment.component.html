@@ -1,0 +1,51 @@
+<br>
+<div class="card">
+    <div class="card-header">
+        <h1><b> Ödeme İşlemleri </b></h1>
+    </div>
+    <div class="card-body">
+        <h3>Kart Bilgileri</h3><hr>
+    <form #paymentForm="ngForm" (ngSubmit)="endOfPayment(paymentForm)">
+
+        <div class="form-group w-100">
+            <label><b>Kredi Kart Numarası</b></label>
+            <input type="text" class="form-control"
+            #creditCardNumber="ngModel" [(ngModel)]="creditCardDetail.creditCardNumber" id="creditCardNumber" name="creditCardNumber" maxlength="16" required>
+      
+        </div>
+      <br>
+        <div class="form-group w-100">
+            <label><b>Güvenlik Numarası</b></label>
+            <input type="text" class="form-control"
+            #securityNumber="ngModel" [(ngModel)]="creditCardDetail.securityNumber" id="securityNumber" name="securityNumber" maxlength="3" required>
+          
+        </div>
+      <br>
+            
+        <div class="form-group w-100">
+          <label><b>Son Kullanma Tarihi - Ay</b></label>
+          <input type="text" class="form-control"
+          #mounthOfExpirationDate="ngModel" [(ngModel)]="creditCardDetail.mounthOfExpirationDate" id="mounthOfExpirationDate" name="mounthOfExpirationDate" maxlength="2" required>
+        
+      </div>
+      <br>
+            
+      <div class="form-group w-100">
+        <label><b>Son Kullanma Tarihi - Yıl </b></label>
+        <input type="text" class="form-control"
+        #yearOfExpirationDate="ngModel" [(ngModel)]="creditCardDetail.yearOfExpirationDate" id="yearOfExpirationDate" name="yearOfExpirationDate" maxlength="4" required>
+      </div>
+        <br>
+
+        <div class="row text-center">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success w-100" >
+             Ödemeyi Gerçekleştir
+            </button>
+          </div>
+        </div>
+        <br>
+      
+      </form>
+    </div>
+</div>

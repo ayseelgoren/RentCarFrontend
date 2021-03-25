@@ -1,12 +1,27 @@
 <div>
-  <div class="text-center" *ngIf="dataStatus==false">
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Arama</label>
+    <input
+      type="text"
+      class="form-control"
+      id="filterText"
+      placeholder="aranacak kelimeyi giriniz"
+      [(ngModel)]="filterText"
+    />
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="filterText">
+    {{ filterText }}
+  </div>
+
+  <div class="text-center" *ngIf="dataStatus == false">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 
-  <div *ngIf="dataStatus==true">
-    <table class="table">
+  <div *ngIf="dataStatus == true">
+     <table class="table">
       <thead>
         <tr>
           <th>Model</th>
@@ -19,18 +34,42 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let car of cars"
-          (click)="setCurrentCar(car)"
-          routerLink="cars/{{ car.carId }}"
+          *ngFor="let car of cars | carFilterPipe:filterText"
+          routerLink="/cars/{{ car.carId }}"
         >
           <th>{{ car.brandName }}</th>
           <th>{{ car.modelYear }}</th>
           <th>{{ car.dailyPrice }}</th>
           <th>{{ car.carName }}</th>
           <th>{{ car.colorName }}</th>
-          <th><button class="btn-primary">Detay</button></th>
+          <th><button class="btn btn-primary" routerLink="/cars/{{ car.carId }}">Detay</button></th>
         </tr>
       </tbody>
     </table>
+
+    <!--div class="row">
+      <div
+        class="col-sm-6"
+        *ngFor="let car of cars | carFilterPipe: filterText"
+        (click)="setCurrentCar(car)"
+      >
+        <div class="card" >
+          <img [src]="getImage(car)" class="card-img-top" />
+          <div class="card-body">
+            <p class="card-text">
+              {{ car.brandName }} - {{ car.carName }} <br>
+              {{ car.modelYear }} -{{ car.dailyPrice }} <br>
+              {{ car.colorName }} <br>
+              
+            </p>
+            <button class="btn btn-primary" routerLink="cars/{{ car.carId }}" style="text-align: right;">
+              Detay
+            </button>
+            <button class="btn btn-success" (click)="rentalCar(car)" style="text-align: left;">Kirala</button>
+          </div>
+        </div>
+      </div>
+    </div-->
   </div>
 </div>
+<div></div>

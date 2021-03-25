@@ -7,7 +7,7 @@
           <img
           [src]="getImage(image)"
           class="d-block w-100"
-          width="800"
+          width="500"
           height="400"
           [alt]="getImage(image)"
           *ngIf="image.imagePath != null"
@@ -15,14 +15,7 @@
         </div>
   
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only"></span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only"></span>
-      </a>
+
     </div>
 
     <div class="card-body">
@@ -31,8 +24,7 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item">{{ carImageDetails.car.dailyPrice }} ₺</li>
       <li class="list-group-item">{{ carImageDetails.car.modelYear }}</li>
-
-    
-    </ul>
+    </ul><br>
+    <button class="btn btn-success form-control" routerLink="/baskets/{{ carImageDetails.car.id}}" >Kirala</button>
   </div>
 </div>

@@ -1,10 +1,7 @@
-export interface Rental {
-  carId: number;
-  lastName : string;
-  firstName : string;
-  carName: string;
-  brandName: string;
-  dailyPrice : number;
-  rentDate: Date;
-  returnDate: Date;
+export class Rental {
+    id: number = null;
+    carId: number;
+    customerId : number;
+    rentDate: Date;
+    returnDate: Date;
 }

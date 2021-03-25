@@ -1,7 +1,12 @@
-<ul class="list-group">
-    <li (click)="setCurrentBrand(brand)" 
-    routerLink="/cars/brand/{{brand.id}}"
-    [class]="getCurrentBrandClass(brand)" 
-    *ngFor="let brand of brands" 
-    >{{brand.name}}</li>
-</ul>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Markalar
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li *ngFor="let brand of brands" ><a class="dropdown-item" (click)="setCurrentBrand(brand)" 
+        routerLink="/cars/brand/{{brand.id}}"
+        [class]="getCurrentBrandClass(brand)" 
+        >{{brand.name}}</a></li>
+    </ul>
+</li>
