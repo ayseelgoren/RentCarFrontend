@@ -1,12 +1,40 @@
+<br>
+<div>
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="filterText"
+      placeholder="Aranacak markayı giriniz"
+      [(ngModel)]="filterText"
+    />
+  </div>
 
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Markalar
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li *ngFor="let brand of brands" ><a class="dropdown-item" (click)="setCurrentBrand(brand)" 
-        routerLink="/cars/brand/{{brand.id}}"
-        [class]="getCurrentBrandClass(brand)" 
-        >{{brand.name}}</a></li>
-    </ul>
-</li>
+  <div class="alert alert-success" role="alert" *ngIf="filterText">
+    {{ filterText }}
+  </div>
+
+  <div class="text-center" *ngIf="dataStatus == false">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div><div *ngIf="dataStatus == true">
+  <table class="table">
+   <thead>
+     <tr>
+       <th>Marka</th>
+       <th  *ngIf="adminControlStatus === true">Güncelle</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr
+       *ngFor="let brand of brands | brandFilterPipe:filterText"
+       routerLink="/cars/brand/{{brand.id}}"
+     >
+       <th>{{ brand.name }}</th>
+       <th  *ngIf="adminControlStatus === true"><button class="btn btn-warning" routerLink="/brands/add/{{ brand.id }}">Güncelle</button></th>
+     </tr>
+   </tbody>
+ </table>
+</div>
+</div>

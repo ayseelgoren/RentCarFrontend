@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Brand } from '../models/brand';
 import { CarDetail } from '../models/carDetail';
 
 @Pipe({
@@ -6,9 +7,9 @@ import { CarDetail } from '../models/carDetail';
 })
 export class BrandFilterPipePipe implements PipeTransform {
 
-  transform(value: CarDetail[], filterText : string): CarDetail[] {
+  transform(value: Brand[], filterText : string): Brand[] {
     filterText = filterText ? filterText.toLocaleLowerCase() : "";
-    return filterText ? value.filter((c: CarDetail) => c.brandName.toLocaleLowerCase().indexOf(filterText) !== -1 ) : value;
+    return filterText ? value.filter((c: Brand) => c.name.toLocaleLowerCase().indexOf(filterText) !== -1 ) : value;
   }
 
 }

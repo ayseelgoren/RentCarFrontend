@@ -1,51 +1,130 @@
-<br>
-<div class="card">
-    <div class="card-header">
-        <h1><b> Ödeme İşlemleri </b></h1>
-    </div>
-    <div class="card-body">
-        <h3>Kart Bilgileri</h3><hr>
-    <form #paymentForm="ngForm" (ngSubmit)="endOfPayment(paymentForm)">
+<br />
 
-        <div class="form-group w-100">
-            <label><b>Kredi Kart Numarası</b></label>
-            <input type="text" class="form-control"
-            #creditCardNumber="ngModel" [(ngModel)]="creditCardDetail.creditCardNumber" id="creditCardNumber" name="creditCardNumber" maxlength="16" required>
-      
-        </div>
-      <br>
-        <div class="form-group w-100">
-            <label><b>Güvenlik Numarası</b></label>
-            <input type="text" class="form-control"
-            #securityNumber="ngModel" [(ngModel)]="creditCardDetail.securityNumber" id="securityNumber" name="securityNumber" maxlength="3" required>
-          
-        </div>
-      <br>
-            
-        <div class="form-group w-100">
-          <label><b>Son Kullanma Tarihi - Ay</b></label>
-          <input type="text" class="form-control"
-          #mounthOfExpirationDate="ngModel" [(ngModel)]="creditCardDetail.mounthOfExpirationDate" id="mounthOfExpirationDate" name="mounthOfExpirationDate" maxlength="2" required>
-        
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel"> Dikkat </h5>
+        <button id="closeButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <br>
-            
+      <div class="modal-body">
+        Kerdi kartı bilgileri kaydedilsin mi?
+      </div>
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" (click)="saveCreditCard()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+
+  <div class="card-header">
+    <h1><b> Ödeme İşlemleri </b></h1>
+  </div>
+  <div class="card-body">
+    <div>
+      <h3>Kayıtlı Kartar</h3>
+      <select
+        class="form-select"
+        name="creditCard"
+        id="creditCard"
+        class="form-control"
+      [(ngModel)]="selectedCrediCart"
+        aria-label="Default select example"
+      >
+        <option value="-1" selected >Kart Seç</option>
+        <option *ngFor="let creditCard of creditCards" [value]="creditCard.id">
+          {{ creditCard.cardNumber }}
+        </option>
+      </select><br>
+      <button  class="btn btn-success w-100"  (click)="payByRegisteredCrediCart()">
+        Ödemeyi Gerçekleştir
+      </button>
+  </div>
+    <hr />
+    <h3>Kart Bilgileri</h3>
+    <form [formGroup]="paymentForm" *ngIf="paymentForm">
+      <div class="form-group w-100">
+        <label><b>Ad - Soyad</b></label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName ="name"
+          id="name"
+          name="name"
+          maxlength="16"
+          required
+        />
+      </div>
+      <br />
+      <div class="form-group w-100">
+        <label><b>Kredi Kart Numarası</b></label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName ="creditCardNumber"
+          id="creditCardNumber"
+          name="creditCardNumber"
+          maxlength="16"
+          required
+        />
+      </div>
+      <br />
+      <div class="form-group w-100">
+        <label><b>Güvenlik Numarası</b></label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName ="securityNumber"
+          id="securityNumber"
+          name="securityNumber"
+          maxlength="3"
+          required
+        />
+      </div>
+      <br />
+
+      <div class="form-group w-100">
+        <label><b>Son Kullanma Tarihi - Ay</b></label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="mounthOfExpirationDate"
+          id="mounthOfExpirationDate"
+          name="mounthOfExpirationDate"
+          maxlength="2"
+          required
+        />
+      </div>
+      <br />
+
       <div class="form-group w-100">
         <label><b>Son Kullanma Tarihi - Yıl </b></label>
-        <input type="text" class="form-control"
-        #yearOfExpirationDate="ngModel" [(ngModel)]="creditCardDetail.yearOfExpirationDate" id="yearOfExpirationDate" name="yearOfExpirationDate" maxlength="4" required>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="yearOfExpirationDate"
+          id="yearOfExpirationDate"
+          name="yearOfExpirationDate"
+          maxlength="4"
+          required
+        />
       </div>
-        <br>
+      <br />
 
-        <div class="row text-center">
-          <div class="col-md-12">
-            <button type="submit" class="btn btn-success w-100" >
-             Ödemeyi Gerçekleştir
-            </button>
-          </div>
+      <div class="row text-center">
+        <div class="col-md-12">
+          <button  class="btn btn-success w-100" (click)="payment()">
+            Ödemeyi Gerçekleştir
+          </button>
+          <button id="showModal" data-bs-toggle="modal" data-bs-target="#myModal" style="visibility: hidden;"></button>
         </div>
-        <br>
-      
-      </form>
-    </div>
+      </div>
+      <br />
+    </form>
+  </div>
 </div>

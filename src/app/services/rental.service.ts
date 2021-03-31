@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/rental';
+import { RentalDetail } from '../models/rentalDetail';
+import { ResponseModel } from '../models/responseModel';
 import { SingularResponseModel } from '../models/singularResponseModel';
 
 @Injectable({
@@ -27,4 +29,12 @@ export class RentalService {
     let newPath = this.apiUrl+"lastrentalcar"
     return this.httpClient.get<SingularResponseModel<Rental>>(newPath);
   }
+
+  rentalControl(rental : Rental) : Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"rentalcontrol",rental)
+  }
+  userRentalCars(id : number) : Observable<ListResponseModel<RentalDetail>>{
+    return this.httpClient.get<ListResponseModel<RentalDetail>>(this.apiUrl+"userrentalcars?id="+id)
+  }
+
 }

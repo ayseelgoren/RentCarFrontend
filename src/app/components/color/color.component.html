@@ -1,20 +1,40 @@
-<li class="nav-item dropdown">
-  <a
-    class="nav-link dropdown-toggle"
-    href="#"
-    id="navbarDropdown"
-    role="button"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    Renkler
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li 
-    *ngFor="let color of colors">
-      <a  class="dropdown-item" (click)="setCurrentColor(color)"
-      routerLink="/cars/color/{{ color.id }}"
-      [class]="getCurrentColorClass(color)">{{ color.name }}</a>
-    </li>
-  </ul>
-</li>
+<br>
+<div>
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="filterText"
+      placeholder="Aranacak rengi giriniz"
+      [(ngModel)]="filterText"
+    />
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="filterText">
+    {{ filterText }}
+  </div>
+
+  <div class="text-center" *ngIf="dataStatus == false">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div><div *ngIf="dataStatus == true">
+  <table class="table">
+   <thead>
+     <tr>
+       <th>Renk</th>
+       <th *ngIf="adminControlStatus === true">Güncelle</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr
+       *ngFor="let color of colors | colorFilterPipe:filterText"
+       routerLink="/cars/color/{{color.id}}"
+     >
+       <th>{{ color.name }}</th>
+       <th *ngIf="adminControlStatus === true"><button class="btn btn-warning" routerLink="/colors/add/{{ color.id }}">Güncelle</button></th>
+     </tr>
+   </tbody>
+ </table>
+</div>
+</div>

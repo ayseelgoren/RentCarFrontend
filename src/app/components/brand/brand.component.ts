@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
+import { AuthService } from 'src/app/services/auth.service';
 import { BrandService } from 'src/app/services/brand.service';
 
 @Component({
@@ -8,30 +9,29 @@ import { BrandService } from 'src/app/services/brand.service';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-  brands : Brand[] = []
-  currentBrand : Brand = {id:0, name:""}
-  constructor(private brandService : BrandService) { }
+  brands : Brand[];
+  dataStatus : boolean = false;
+  filterText = "";
+  adminControlStatus = false;
+
+  constructor(private brandService : BrandService,
+    private authService : AuthService) { }
 
   ngOnInit(): void {
     this.getBrands();
+    this.adminControl();
   }
 
   getBrands(){
     this.brandService.getBrands().subscribe(response => {
       this.brands = response.data
+      if(response.success){
+        this.dataStatus = true;
+      }
     });
   }
-
-  setCurrentBrand(brand:Brand){
-    this.currentBrand = brand;
+  adminControl(){
+    this.adminControlStatus = this.authService.adminControl();
   }
-
-  getCurrentBrandClass(brand:Brand){
-    if (this.currentBrand == brand){
-      return "list-group-item active";
-    }else{
-      return "list-group-item";
-    }
-  
-  }
+ 
 }

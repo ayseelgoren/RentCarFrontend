@@ -1,0 +1,89 @@
+<br>
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Araç Ekle</h5></div>
+            <div class="card-body">
+                <form [formGroup]="carAddForm" *ngIf="carAddForm">
+                    <div class="mb-3">
+                        <label for="description">Araba Açıklaması</label>
+                        <div class="form-group">
+                            <input type="text" 
+                            id="description" 
+                            formControlName="description" class="form-control" 
+                            placeholder="Araba Açıklaması"/>
+                        </div>
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="categoryId">Marka</label>
+                        <div>
+                        <select
+                        class="form-select"
+                        name="brand"
+                        id="brand"
+                        class="form-control"
+                        aria-label="Default select example" 
+                        formControlName="brandId">
+
+                        <option *ngFor="let brand of brands" [value]="brand.id">
+                          {{ brand.name }}
+                        </option>
+                      </select>
+                    </div>
+                    </div>
+                   <div class="mb-3">
+                    <label for="unitsInStock">Renk</label>
+                    <div class="form-group">
+                        <select
+                        class="form-select"
+                        name="color"
+                        id="color"
+                        class="form-control"
+                        aria-label="Default select example" 
+                        formControlName="colorId"
+                        >
+
+                        <option *ngFor="let color of colors" [value]="color.id">
+                          {{ color.name }}
+                        </option>
+                      </select>
+                    </div>
+                   </div>
+                    <div  class="mb-3">
+                        <label for="modelYear">Model Yılı</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="modelYear" 
+                            formControlName="modelYear" class="form-control" 
+                            placeholder="Model Yılı"/>
+                        </div>
+                    </div>
+                    <div  class="mb-3">
+                        <label for="dailyPrice">Fiyat</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="dailyPrice" 
+                            formControlName="dailyPrice" class="form-control" 
+                            placeholder="Fiyat"/>
+                        </div>
+                    </div>
+
+                    <div  class="mb-3">
+                        <label for="findexPoint">Findeks Puan</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="findexPoint" 
+                            formControlName="findexPoint" class="form-control" 
+                            placeholder="Findeks Puan"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>
+

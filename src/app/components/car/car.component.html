@@ -1,11 +1,11 @@
+<br>
 <div>
   <div class="mb-3">
-    <label for="filterText" class="form-label">Arama</label>
     <input
       type="text"
       class="form-control"
       id="filterText"
-      placeholder="aranacak kelimeyi giriniz"
+      placeholder="Aranacak arabayı giriniz"
       [(ngModel)]="filterText"
     />
   </div>
@@ -30,6 +30,7 @@
           <th>Açıklama</th>
           <th>Renk</th>
           <th>Detay</th>
+          <th *ngIf="adminControlStatus === true">Güncelle</th>
         </tr>
       </thead>
       <tbody>
@@ -43,33 +44,10 @@
           <th>{{ car.carName }}</th>
           <th>{{ car.colorName }}</th>
           <th><button class="btn btn-primary" routerLink="/cars/{{ car.carId }}">Detay</button></th>
+          <th *ngIf="adminControlStatus === true"><button class="btn btn-warning" routerLink="/cars/add/{{ car.carId }}">Güncelle</button></th>
         </tr>
       </tbody>
     </table>
-
-    <!--div class="row">
-      <div
-        class="col-sm-6"
-        *ngFor="let car of cars | carFilterPipe: filterText"
-        (click)="setCurrentCar(car)"
-      >
-        <div class="card" >
-          <img [src]="getImage(car)" class="card-img-top" />
-          <div class="card-body">
-            <p class="card-text">
-              {{ car.brandName }} - {{ car.carName }} <br>
-              {{ car.modelYear }} -{{ car.dailyPrice }} <br>
-              {{ car.colorName }} <br>
-              
-            </p>
-            <button class="btn btn-primary" routerLink="cars/{{ car.carId }}" style="text-align: right;">
-              Detay
-            </button>
-            <button class="btn btn-success" (click)="rentalCar(car)" style="text-align: left;">Kirala</button>
-          </div>
-        </div>
-      </div>
-    </div-->
   </div>
 </div>
 <div></div>

@@ -6,6 +6,8 @@ import { CarImageDetail } from 'src/app/models/carImageDetail';
 import { CarDetailService } from 'src/app/services/car-detail.service';
 import { CarService } from 'src/app/services/car.service';
 import { CartService } from 'src/app/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-car',
@@ -18,9 +20,12 @@ export class CarComponent implements OnInit {
   dataStatus : boolean = false;
   filterText = ""
  
+  adminControlStatus = false;
   constructor(
     private carService: CarService,
+    private authService : AuthService,
     private activatedRoute: ActivatedRoute,
+    private toastrService : ToastrService
   ) {   
   }
 
@@ -34,7 +39,7 @@ export class CarComponent implements OnInit {
         this.getCars();
       }
     });
-
+    this.adminControl();
   }
 
   getCars() {
@@ -42,6 +47,9 @@ export class CarComponent implements OnInit {
       this.cars = response.data;
       if(response.success){
         this.dataStatus = true;
+      }
+      if(this.cars.length === 0){
+        this.toastrService.warning("Araba bulunmamaktadır.","Uyarı")
       }
     });
   }
@@ -52,6 +60,9 @@ export class CarComponent implements OnInit {
       if(response.success){
         this.dataStatus = true;
       }
+      if(this.cars.length === 0){
+        this.toastrService.warning("Araba bulunmamaktadır.","Uyarı")
+      }
     });
   }
 
@@ -61,7 +72,13 @@ export class CarComponent implements OnInit {
       if(response.success){
         this.dataStatus = true;
       }
+      if(this.cars.length === 0){
+        this.toastrService.warning("Araba bulunmamaktadır.","Uyarı")
+      }
     });
   }
 
+  adminControl(){
+    this.adminControlStatus = this.authService.adminControl();
+  }
 }

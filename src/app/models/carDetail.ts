@@ -5,4 +5,5 @@ export interface CarDetail{
     carName : string;
     modelYear : number;
     dailyPrice : number;
+    findexPoint : number;
 }

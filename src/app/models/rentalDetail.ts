@@ -1,5 +1,6 @@
 export interface RentalDetail {
   carId: number;
+  userId: number;
   lastName : string;
   firstName : string;
   carName: string;
@@ -7,4 +8,6 @@ export interface RentalDetail {
   dailyPrice : number;
   rentDate: Date;
   returnDate: Date;
+  carFindexPoint : number;
+  customerFindexPoint : number
 }

@@ -6,7 +6,7 @@ import { CarDetail } from '../models/carDetail';
 import { CarImageDetail } from '../models/carImageDetail';
 import { Car } from '../models/car';
 import { SingularResponseModel } from '../models/singularResponseModel';
-
+import { ResponseModel } from '../models/responseModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +14,20 @@ export class CarService {
 
   apiUrl = "https://localhost:44362/api/";
   constructor(private httpClient : HttpClient) { }
+
+  add(car:Car):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/add",car);
+  }
+
+  update(car:Car):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/update",car);
+  }
+
+  getById(id : number)  : Observable<SingularResponseModel<Car>>{
+    console.log(id)
+    let newPath = this.apiUrl+"cars/getbyid?id="+id;
+    return this.httpClient.get<SingularResponseModel<Car>>(newPath);
+  }
 
   getCars() : Observable<ListResponseModel<CarDetail>>{
     let newPath = this.apiUrl+"cars/getcardetails";
@@ -26,12 +40,7 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
   }
 
-  getById(id : number)  : Observable<SingularResponseModel<Car>>{
-    console.log(id)
-    let newPath = this.apiUrl+"cars/getbyid?id="+id;
-    return this.httpClient.get<SingularResponseModel<Car>>(newPath);
-  }
-
+ 
   getCarsByBrand(brandId : number)  : Observable<ListResponseModel<CarDetail>>{
     let newPath = this.apiUrl+"cars/getcarsbybrand?id="+brandId;
     return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);

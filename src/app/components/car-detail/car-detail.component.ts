@@ -26,6 +26,7 @@ export class CarDetailComponent implements OnInit {
       dailyPrice: 0,
       description: '',
       modelYear: 0,
+      findexPoint : 0
     },
     carImages:[]
   };

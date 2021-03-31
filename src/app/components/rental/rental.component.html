@@ -1,1 +1,29 @@
-<p>rental works!</p>
+<br />
+<div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Araba</th>
+          <th>Marka</th>
+          <th>Fiyat</th>
+          <th>Araba Findeks Puanı</th>
+          <th>Kirlama Tarihi</th>
+          <th>Teslim Tarihi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rental of rentals"
+        routerLink="/cars/{{ rental.carId }}">
+          <th>{{ rental.carName }}</th>
+          <th>{{ rental.brandName }}</th>
+          <th>{{ rental.dailyPrice }}</th>
+          <th>{{ rental.carFindexPoint }}</th>
+          <th>{{ rental.rentDate }}</th>
+          <th>{{ rental.returnDate }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div></div>
