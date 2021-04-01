@@ -1,4 +1,4 @@
-<br>
+<br />
 <div>
   <div class="mb-3">
     <input
@@ -21,7 +21,7 @@
   </div>
 
   <div *ngIf="dataStatus == true">
-     <table class="table">
+    <table class="table">
       <thead>
         <tr>
           <th>Model</th>
@@ -35,16 +35,29 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let car of cars | carFilterPipe:filterText"
+          *ngFor="let car of cars | carFilterPipe: filterText"
           routerLink="/cars/{{ car.carId }}"
+          appTable
+          defaultColor
         >
           <th>{{ car.brandName }}</th>
           <th>{{ car.modelYear }}</th>
           <th>{{ car.dailyPrice }}</th>
           <th>{{ car.carName }}</th>
           <th>{{ car.colorName }}</th>
-          <th><button class="btn btn-primary" routerLink="/cars/{{ car.carId }}">Detay</button></th>
-          <th *ngIf="adminControlStatus === true"><button class="btn btn-warning" routerLink="/cars/add/{{ car.carId }}">Güncelle</button></th>
+          <th>
+            <button class="btn btn-primary" routerLink="/cars/{{ car.carId }}">
+              Detay
+            </button>
+          </th>
+          <th *ngIf="adminControlStatus === true">
+            <button
+              class="btn btn-warning"
+              routerLink="/cars/add/{{ car.carId }}"
+            >
+              Güncelle
+            </button>
+          </th>
         </tr>
       </tbody>
     </table>

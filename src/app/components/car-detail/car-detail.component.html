@@ -1,21 +1,26 @@
 <div>
   <br />
   <div class="card" *ngIf="carImageDetails">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner"  *ngFor="let image of carImageDetails.carImages let i = index" [ngClass]="getSliderClassName(i)">
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <div
+        class="carousel-inner"
+        *ngFor="let image of carImageDetails.carImages"
+      >
         <div class="carousel-item active">
           <img
-          [src]="getImage(image)"
-          class="d-block w-100"
-          width="500"
-          height="400"
-          [alt]="getImage(image)"
-          *ngIf="image.imagePath != null"
+            [src]="getImage(image)"
+            class="d-block w-100"
+            width="500"
+            height="400"
+            [alt]="getImage(image)"
+            *ngIf="image.imagePath != null"
           />
         </div>
-  
       </div>
-
     </div>
 
     <div class="card-body">
@@ -25,7 +30,13 @@
       <li class="list-group-item">{{ carImageDetails.car.dailyPrice }} ₺</li>
       <li class="list-group-item">{{ carImageDetails.car.modelYear }}</li>
       <li class="list-group-item">{{ carImageDetails.car.findexPoint }}</li>
-    </ul><br>
-    <button class="btn btn-success form-control" routerLink="/baskets/{{ carImageDetails.car.id}}" >Kirala</button>
+    </ul>
+    <br />
+    <button
+      class="btn btn-success form-control"
+      routerLink="/baskets/{{ carImageDetails.car.id }}"
+    >
+      Kirala
+    </button>
   </div>
 </div>

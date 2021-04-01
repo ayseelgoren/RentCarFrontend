@@ -1,67 +1,232 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Rent A Car</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Anasayfa</a>
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/cars"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Anasayfa</a
+          >
         </li>
         <li class="nav-item" *ngIf="adminControlStatus === true">
-          <a class="nav-link" routerLink="customers" >Müşteriler</a>
+          <a
+            class="nav-link"
+            routerLink="/customers"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Müşteriler</a
+          >
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Araçlar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/cars">Tüm Araçlar</a></li>
-            <li><a class="dropdown-item" routerLink="/rentals" *ngIf="userName">Kiralanan Araçlar</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="/cars/add" *ngIf="adminControlStatus === true">Araç Ekle</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/cars"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Tüm Araçlar</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/rentals"
+                *ngIf="userName"
+                [routerLinkActive]="['active']"
+                >Kiralanan Araçlar</a
+              >
+            </li>
+            <li>
+              <hr
+                class="dropdown-divider"
+                *ngIf="adminControlStatus === true"
+              />
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/cars/add"
+                *ngIf="adminControlStatus === true"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Araç Ekle</a
+              >
+            </li>
           </ul>
         </li>
-       
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Renkler
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/colors">Tüm Renkler</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="/colors/add" *ngIf="adminControlStatus === true">Renk Ekle</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/colors"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Tüm Renkler</a
+              >
+            </li>
+            <li>
+              <hr
+                class="dropdown-divider"
+                *ngIf="adminControlStatus === true"
+              />
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/colors/add"
+                *ngIf="adminControlStatus === true"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Renk Ekle</a
+              >
+            </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
             Markalar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/brands">Tüm Markalar</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="/brands/add" *ngIf="adminControlStatus === true">Marka Ekle</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/brands"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Tüm Markalar</a
+              >
+            </li>
+            <li>
+              <hr
+                class="dropdown-divider"
+                *ngIf="adminControlStatus === true"
+              />
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/brands/add"
+                *ngIf="adminControlStatus === true"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Marka Ekle</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
 
-      <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto!important;" *ngIf="ifLoggedIn === false" >
-        <button class="btn btn-outline-info" type="submit" routerLink="/register">Kayıt Ol</button> &nbsp; &nbsp;
-        <button class="btn btn-outline-success" type="submit" routerLink="/login">Giriş Yap</button>
+      <ul
+        class="navbar-nav mb-2 mb-lg-0"
+        style="margin-left: auto !important"
+        *ngIf="ifLoggedIn === false"
+      >
+        <button
+          class="btn btn-outline-info"
+          type="submit"
+          routerLink="/register"
+        >
+          Kayıt Ol
+        </button>
+        &nbsp; &nbsp;
+        <button
+          class="btn btn-outline-success"
+          type="submit"
+          routerLink="/login"
+        >
+          Giriş Yap
+        </button>
       </ul>
 
-      <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto!important;" *ngIf="ifLoggedIn === true">
+      <ul
+        class="navbar-nav mb-2 mb-lg-0"
+        style="margin-left: auto !important"
+        *ngIf="ifLoggedIn === true"
+      >
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{userName}}
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ userName }}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0;left: auto;">
-            <li><a class="dropdown-item" routerLink="/profile">Hesabım</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" (click)="signOut()">Çıkış Yap</a></li>
+          <ul
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdown"
+            style="right: 0; left: auto"
+          >
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/profile"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Hesabım</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="signOut()"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Çıkış Yap</a
+              >
+            </li>
           </ul>
-        </li>   </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

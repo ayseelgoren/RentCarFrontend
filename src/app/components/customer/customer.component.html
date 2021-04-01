@@ -1,20 +1,23 @@
-<br>
-<table class="table">
-  <thead>
+<br />
+<div>
+  <h1>Müşteriler</h1>
+  <hr />
+  <table class="table">
+    <thead>
       <tr>
-          <th>Şirket</th>
-          <th>Ad</th>
-          <th>Soyaf</th>
-          <th>Email</th>
+        <th>Şirket</th>
+        <th>Ad</th>
+        <th>Soyaf</th>
+        <th>Email</th>
       </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor = "let customer of customersDetails">
-          <th>{{customer.companyName}}</th>
-          <th>{{customer.firstName}}</th>
-          <th>{{customer.lastName}}</th>
-          <th>{{customer.email}}</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customersDetails">
+        <th>{{ customer.companyName }}</th>
+        <th>{{ customer.firstName }}</th>
+        <th>{{ customer.lastName }}</th>
+        <th>{{ customer.email }}</th>
       </tr>
-     
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

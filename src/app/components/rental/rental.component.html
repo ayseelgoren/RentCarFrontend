@@ -1,6 +1,8 @@
 <br />
 <div>
   <div>
+    <h1>Kiralanan Arabalar</h1>
+    <hr />
     <table class="table">
       <thead>
         <tr>
@@ -13,8 +15,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let rental of rentals"
-        routerLink="/cars/{{ rental.carId }}">
+        <tr
+          *ngFor="let rental of rentals"
+          routerLink="/cars/{{ rental.carId }}"
+          appTable
+          defaultColor
+        >
           <th>{{ rental.carName }}</th>
           <th>{{ rental.brandName }}</th>
           <th>{{ rental.dailyPrice }}</th>

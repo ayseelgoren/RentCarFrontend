@@ -59,68 +59,79 @@ export class BasketComponent implements OnInit {
     });
   }
 
+  //Girilen tarihlerin kontrolü ve kiralanması işleminin gerçekleştirilmesi
   control() {
     if (this.rentalAddForm.valid) {
-      if(this.authService.getUserId() != null){
-        this.customerService.getByUserId(Number(this.authService.getUserId())).subscribe(response => {
-          this.customerId = response.data.id
-          console.log(response)
-          let rentalModel = Object.assign({}, this.rentalAddForm.value);
-          rentalModel.carId = this.carId;
-          rentalModel.customerId = this.customerId;
-          console.log(rentalModel);
-    
-          this.rentalService.rentalControl(rentalModel).subscribe(
+      if (this.authService.getUserId() != null) {
+        this.customerService
+          .getByUserId(Number(this.authService.getUserId()))
+          .subscribe(
             (response) => {
-              console.log(response);
-              if (response.success) {
-                this.toastrService.success(
-                  response.message + 'Kiralama işlemini gerçekleştirdiniz.'
-                );
-                this.rentalService.addRental(rentalModel).subscribe(
-                  (response) => {
-                    console.log(response);
+              this.customerId = response.data.id;
+              //console.log(response)
+              let rentalModel = Object.assign({}, this.rentalAddForm.value);
+              rentalModel.carId = this.carId;
+              rentalModel.customerId = this.customerId;
+              //console.log(rentalModel);
+
+              this.rentalService.rentalControl(rentalModel).subscribe(
+                (response) => {
+                  //console.log(response);
+                  if (response.success) {
                     this.toastrService.success(
-                      response.message + ' Ödeme sayfasına yönlendiriliyorsunuz.'
+                      response.message + 'Kiralama işlemini gerçekleştirdiniz.'
                     );
-                    this.rentalService.lastRentalCar().subscribe((response) => {
-                      if (response.success) {
+                    this.rentalService.addRental(rentalModel).subscribe(
+                      (response) => {
+                        //console.log(response);
+                        this.toastrService.success(
+                          response.message +
+                            ' Ödeme sayfasına yönlendiriliyorsunuz.'
+                        );
+                        this.rentalService
+                          .lastRentalCar()
+                          .subscribe((response) => {
+                            if (response.success) {
+                              setTimeout(() => {
+                                this.router.navigate([
+                                  '/payment/' +
+                                    response.data.id +
+                                    '/' +
+                                    this.car.dailyPrice,
+                                ]);
+                              }, 1000);
+                            }
+                          });
+                      },
+                      (error) => {
+                        //console.log(error);
+                        if (error.status === 500) {
+                          this.toastrService.error(
+                            'Giriş yapmalısınız. Giriş Yap sayfasına yönlendirileceksiniz.'
+                          );
+                        }
                         setTimeout(() => {
-                          this.router.navigate([
-                            '/payment/' +
-                              response.data.id +
-                              '/' +
-                              this.car.dailyPrice,
-                          ]);
-                        }, 1000);
+                          this.router.navigate(['/login']);
+                        });
                       }
-                    });
-                  },
-                  (error) => {
-                    console.log(error);
-                    if (error.status === 500) {
-                      this.toastrService.error(
-                        'Giriş yapmalısınız. Giriş Yap sayfasına yönlendirileceksiniz.'
-                      );
-                    }
-                    setTimeout(() => {
-                      this.router.navigate(['/login']);
-                    });
+                    );
                   }
-                );
-              }
+                },
+                (errorResponse) => {
+                  //console.log(errorResponse);
+                  this.toastrService.error(errorResponse.error.message);
+                }
+              );
             },
-            (errorResponse) => {
-              console.log(errorResponse);
-              this.toastrService.error(errorResponse.error.message);
+            (error) => {
+              console.log(error);
             }
           );
-        },error=>{
-          console.log(error)
-        })
-       
-      }else{
-        this.toastrService.warning("Kiralam tarihlerini kontrol etmek için giriş yapınız.","Uyarı")
+      } else {
+        this.toastrService.warning(
+          'Kiralam tarihlerini kontrol etmek için giriş yapınız.',
+          'Uyarı'
+        );
       }
     } else {
       this.toastrService.error('Formunuz eksik', 'Dikkat');
@@ -129,7 +140,6 @@ export class BasketComponent implements OnInit {
 
   getCar(carId: number) {
     this.carService.getById(carId).subscribe((response) => {
-      console.log(response);
       this.car = response.data;
     });
   }

@@ -1,4 +1,4 @@
-<br>
+<br />
 <div>
   <div class="mb-3">
     <input
@@ -18,23 +18,33 @@
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
-  </div><div *ngIf="dataStatus == true">
-  <table class="table">
-   <thead>
-     <tr>
-       <th>Renk</th>
-       <th *ngIf="adminControlStatus === true">Güncelle</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr
-       *ngFor="let color of colors | colorFilterPipe:filterText"
-       routerLink="/cars/color/{{color.id}}"
-     >
-       <th>{{ color.name }}</th>
-       <th *ngIf="adminControlStatus === true"><button class="btn btn-warning" routerLink="/colors/add/{{ color.id }}">Güncelle</button></th>
-     </tr>
-   </tbody>
- </table>
-</div>
+  </div>
+  <div *ngIf="dataStatus == true">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Renk</th>
+          <th *ngIf="adminControlStatus === true">Güncelle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let color of colors | colorFilterPipe: filterText"
+          routerLink="/cars/color/{{ color.id }}"
+          appTable
+          defaultColor
+        >
+          <th>{{ color.name }}</th>
+          <th *ngIf="adminControlStatus === true">
+            <button
+              class="btn btn-warning"
+              routerLink="/colors/add/{{ color.id }}"
+            >
+              Güncelle
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

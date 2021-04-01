@@ -21,7 +21,6 @@ import { CreditCardService } from 'src/app/services/credit-card.service';
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent implements OnInit {
-
   paymentForm: FormGroup;
   creditCard: CreditCard;
   creditCards: CreditCard[] = [];
@@ -48,7 +47,6 @@ export class PaymentComponent implements OnInit {
     this.createPaymentForm();
 
     this.getAllUserCreditCard();
-   
   }
 
   createPaymentForm() {
@@ -66,8 +64,8 @@ export class PaymentComponent implements OnInit {
       (response) => {
         console.log(response);
         if (Number(this.selectedCrediCart) === -1) {
-        document.getElementById("showModal").click();
-      }
+          document.getElementById('showModal').click();
+        }
         this.toastrService.success('Ödeme gerçekleştirildi.');
       },
       (error) => {
@@ -87,13 +85,13 @@ export class PaymentComponent implements OnInit {
         id: 0,
         balance: creditCardModel.amount,
         cardNumber: creditCardModel.creditCardNumber,
-        userId : this.authService.getUserId(),
+        userId: this.authService.getUserId(),
         mounthOfExpirationDate: creditCardModel.mounthOfExpirationDate,
         securityNumber: creditCardModel.securityNumber,
         yearOfExpirationDate: creditCardModel.yearOfExpirationDate,
-        userName: this.authService.getUserName()
+        userName: this.authService.getUserName(),
       };
-      
+
       this.selectedCrediCart = -1;
       this.getBuy(creditCardModel);
     } else {
@@ -101,27 +99,9 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  saveCreditCard() {
-    document.getElementById("closeButton").click();
-    console.log(this.creditCard);
-    this.basketService.add(this.creditCard).subscribe(
-      (response) => {
-        console.log(response);
-        this.toastrService.success("Kartınız kaydedildi.");
-     
-      },
-      (error) => {
-        console.log(error);
-        this.toastrService.error(error.error.message);
-      }
-    );
-  }
-
   payByRegisteredCrediCart() {
-
     if (Number(this.selectedCrediCart) !== -1) {
-
-        this.basketService
+      this.basketService
         .getById(this.selectedCrediCart)
         .subscribe((response) => {
           let creditModel: CreditCardDetail = {
@@ -130,7 +110,7 @@ export class PaymentComponent implements OnInit {
             amount: this.amount,
             mounthOfExpirationDate: response.data.mounthOfExpirationDate,
             securityNumber: response.data.securityNumber,
-            name:response.data.userName
+            name: response.data.userName,
           };
           this.getBuy(creditModel);
         });
@@ -138,18 +118,33 @@ export class PaymentComponent implements OnInit {
       this.toastrService.warning(
         'Ödeme işlemi için kayıtlı olan kartlarınızdan seçiniz.'
       );
+    }
+  }
+
+  saveCreditCard() {
+    document.getElementById('closeButton').click();
+    console.log(this.creditCard);
+    this.basketService.add(this.creditCard).subscribe(
+      (response) => {
+        console.log(response);
+        this.toastrService.success('Kartınız kaydedildi.');
+      },
+      (error) => {
+        console.log(error);
+        this.toastrService.error(error.error.message);
       }
+    );
   }
 
   getAllUserCreditCard() {
     let userId = this.authService.getUserId();
-    console.log(userId);
+    //console.log(userId);
     this.customerService.getByUserId(userId).subscribe((response) => {
-      console.log(response);
+      //console.log(response);
       this.basketService
         .getAllUserCreditCard(response.data.userId)
         .subscribe((responseCustomer) => {
-          console.log(responseCustomer);
+          //console.log(responseCustomer);
           this.creditCards = responseCustomer.data;
         });
     });

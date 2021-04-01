@@ -1,38 +1,52 @@
-<br>
-  <div class="card text-center">
-    <div class="card-header">
-    <b><h1> Kiralama İşlemi</h1></b>
-    </div>
-    <div class="card-body">
-
-     <b><h5 class="card-title" *ngIf="car"> Araç : {{car.description}}</h5></b><br>
-     <b><h5 class="card-title" *ngIf="car"> Fiyat : {{car.dailyPrice}} ₺</h5></b><br>
-     <b><h5 class="card-title" *ngIf="car"> Findeks Puan : {{car.findexPoint}} </h5></b><br>
-     <form [formGroup]="rentalAddForm" *ngIf="rentalAddForm">
-
-        <div class="form-group w-100">
-            <label><b>Kiralama Tarihi</b></label>
-            <input type="date" class="form-control"
-            formControlName="rentDate"  id="rentDate" name="rentDate" required>
-      
-        </div>
-      
-        <div class="form-group w-100">
-            <label><b>Dönüş Tarihi</b></label>
-            <input type="date" class="form-control"
-            formControlName="returnDate" id="returnDate" name="returnDate" required>
-          
-        </div>
-      <br>
-        <div class="row text-center">
-          <div class="col-md-12">
-            <button class="btn btn-success w-100"  (click)="control()">
-              Arabayı Kirala
-            </button>
-          </div>
-        </div>
-      
-      </form>
-    </div>
-
+<br />
+<div class="card text-center">
+  <div class="card-header">
+    <b><h1>Kiralama İşlemi</h1></b>
   </div>
+  <div class="card-body">
+    <b
+      ><h5 class="card-title" *ngIf="car">Araç : {{ car.description }}</h5></b
+    ><br />
+    <b
+      ><h5 class="card-title" *ngIf="car">Fiyat : {{ car.dailyPrice }} ₺</h5></b
+    ><br />
+    <b
+      ><h5 class="card-title" *ngIf="car">
+        Findeks Puan : {{ car.findexPoint }}
+      </h5></b
+    ><br />
+    <form [formGroup]="rentalAddForm" *ngIf="rentalAddForm">
+      <div class="form-group w-100">
+        <label><b>Kiralama Tarihi</b></label>
+        <input
+          type="date"
+          class="form-control"
+          formControlName="rentDate"
+          id="rentDate"
+          name="rentDate"
+          required
+        />
+      </div>
+
+      <div class="form-group w-100">
+        <label><b>Dönüş Tarihi</b></label>
+        <input
+          type="date"
+          class="form-control"
+          formControlName="returnDate"
+          id="returnDate"
+          name="returnDate"
+          required
+        />
+      </div>
+      <br />
+      <div class="row text-center">
+        <div class="col-md-12">
+          <button class="btn btn-success w-100" (click)="control()">
+            Arabayı Kirala
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

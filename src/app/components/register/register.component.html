@@ -1,54 +1,53 @@
 <body class="text-center">
-    <main class="form-signin">
-      <form [formGroup]="registerForm">
-        <h1 class="h3 mb-3 ">Kayıt Ol</h1>
-  
-        <div class="form-floating">
-          <input
-            formControlName="firstName"
-            type="text"
-            class="form-control"
-            id="floatingInputFirstName"
-            placeholder="Ad"
-          />
-          <label for="floatingInput">Ad</label>
-        </div>
-        <div class="form-floating">
-            <input
-              formControlName="lastName"
-              type="text"
-              class="form-control"
-              id="floatingInputLastName"
-              placeholder="Soyad"
-            />
-            <label for="floatingInput">Soyad</label>
-          </div>
-          <div class="form-floating">
-            <input
-              formControlName="email"
-              type="email"
-              class="form-control"
-              id="floatingInput"
-              placeholder="name@example.com"
-            />
-            <label for="floatingInput">E-posta</label>
-          </div>
-        <div class="form-floating">
-          <input
+  <main class="form-signin">
+    <form [formGroup]="registerForm">
+      <h1 class="h3 mb-3">Kayıt Ol</h1>
+
+      <div class="form-floating">
+        <input
+          formControlName="firstName"
+          type="text"
+          class="form-control"
+          id="floatingInputFirstName"
+          placeholder="Ad"
+        />
+        <label for="floatingInput">Ad</label>
+      </div>
+      <div class="form-floating">
+        <input
+          formControlName="lastName"
+          type="text"
+          class="form-control"
+          id="floatingInputLastName"
+          placeholder="Soyad"
+        />
+        <label for="floatingInput">Soyad</label>
+      </div>
+      <div class="form-floating">
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">E-posta</label>
+      </div>
+      <div class="form-floating">
+        <input
           formControlName="password"
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-          <label for="floatingPassword">Parola</label>
-        </div>
-  
-     
-        <button class="w-100 btn btn-lg btn-primary" (click)="register()">
-          Kayıt Ol 
-        </button>
-        <p class="mt-5 mb-3 text-muted">&copy;Rent a Car - 2021</p>
-      </form>
-    </main>
-  </body>
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Parola</label>
+      </div>
+
+      <button class="w-100 btn btn-lg btn-primary" (click)="register()">
+        Kayıt Ol
+      </button>
+      <p class="mt-5 mb-3 text-muted">&copy;Rent a Car - 2021</p>
+    </form>
+  </main>
+</body>

@@ -1,27 +1,42 @@
 <br />
 
-
-
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" >
+<div
+  class="modal fade"
+  id="myModal"
+  tabindex="-1"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel"> Dikkat </h5>
-        <button id="closeButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="myModalLabel">Dikkat</h5>
+        <button
+          id="closeButton"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="modal-body">
-        Kerdi kartı bilgileri kaydedilsin mi?
-      </div>
+      <div class="modal-body">Kerdi kartı bilgileri kaydedilsin mi?</div>
       <div class="modal-footer">
-        <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-        <button type="button" class="btn btn-primary" (click)="saveCreditCard()">Kaydet</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveCreditCard()"
+        >
+          Kaydet
+        </button>
       </div>
     </div>
   </div>
 </div>
 <div class="card">
-
   <div class="card-header">
     <h1><b> Ödeme İşlemleri </b></h1>
   </div>
@@ -33,18 +48,21 @@
         name="creditCard"
         id="creditCard"
         class="form-control"
-      [(ngModel)]="selectedCrediCart"
+        [(ngModel)]="selectedCrediCart"
         aria-label="Default select example"
       >
-        <option value="-1" selected >Kart Seç</option>
+        <option value="-1" selected>Kart Seç</option>
         <option *ngFor="let creditCard of creditCards" [value]="creditCard.id">
           {{ creditCard.cardNumber }}
-        </option>
-      </select><br>
-      <button  class="btn btn-success w-100"  (click)="payByRegisteredCrediCart()">
+        </option></select
+      ><br />
+      <button
+        class="btn btn-success w-100"
+        (click)="payByRegisteredCrediCart()"
+      >
         Ödemeyi Gerçekleştir
       </button>
-  </div>
+    </div>
     <hr />
     <h3>Kart Bilgileri</h3>
     <form [formGroup]="paymentForm" *ngIf="paymentForm">
@@ -53,7 +71,7 @@
         <input
           type="text"
           class="form-control"
-          formControlName ="name"
+          formControlName="name"
           id="name"
           name="name"
           maxlength="16"
@@ -66,7 +84,7 @@
         <input
           type="text"
           class="form-control"
-          formControlName ="creditCardNumber"
+          formControlName="creditCardNumber"
           id="creditCardNumber"
           name="creditCardNumber"
           maxlength="16"
@@ -79,7 +97,7 @@
         <input
           type="text"
           class="form-control"
-          formControlName ="securityNumber"
+          formControlName="securityNumber"
           id="securityNumber"
           name="securityNumber"
           maxlength="3"
@@ -118,10 +136,15 @@
 
       <div class="row text-center">
         <div class="col-md-12">
-          <button  class="btn btn-success w-100" (click)="payment()">
+          <button class="btn btn-success w-100" (click)="payment()">
             Ödemeyi Gerçekleştir
           </button>
-          <button id="showModal" data-bs-toggle="modal" data-bs-target="#myModal" style="visibility: hidden;"></button>
+          <button
+            id="showModal"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            style="visibility: hidden"
+          ></button>
         </div>
       </div>
       <br />

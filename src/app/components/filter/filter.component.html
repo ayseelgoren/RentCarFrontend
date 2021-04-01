@@ -8,7 +8,6 @@
       class="form-control"
       [(ngModel)]="selectedBrand"
       aria-label="Default select example"
-      
     >
       <option *ngFor="let brand of brands" [value]="brand.id">
         {{ brand.name }}
@@ -19,7 +18,7 @@
       class="btn btn-success"
       style="margin-top: 10%; margin-left: 70%"
       (click)="currentBrand(selectedBrand)"
-      routerLink="/cars/brand/{{selectedBrand}}"
+      routerLink="/cars/brand/{{ selectedBrand }}"
     >
       Filtrele
     </button>
@@ -43,7 +42,7 @@
       class="btn btn-success"
       style="margin-top: 10%; margin-left: 70%"
       (click)="currentColor(selectedColor)"
-      routerLink="/cars/color/{{selectedColor}}"
+      routerLink="/cars/color/{{ selectedColor }}"
     >
       Filtrele
     </button>

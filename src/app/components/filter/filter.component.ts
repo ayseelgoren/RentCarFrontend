@@ -14,12 +14,12 @@ export class FilterComponent implements OnInit {
   cars: CarDetail[] = [];
   colors: Color[] = [];
   brands: Brand[] = [];
-  selectedBrand = 0
-  selectedColor = 0
+  selectedBrand = 0;
+  selectedColor = 0;
 
   constructor(
     private colorService: ColorService,
-    private brandService: BrandService,
+    private brandService: BrandService
   ) {}
 
   ngOnInit(): void {
@@ -39,12 +39,11 @@ export class FilterComponent implements OnInit {
     });
   }
 
-  
-  currentBrand(brand : any) {
-    console.log(brand)
+  currentBrand(brand: any) {
+    console.log(brand);
   }
 
   currentColor(color: any) {
-    console.log(color)
+    console.log(color);
   }
 }

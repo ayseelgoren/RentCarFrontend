@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CarImage } from 'src/app/models/carImage';
 import { CarDetail } from 'src/app/models/carDetail';
-import { CarImageDetail } from 'src/app/models/carImageDetail';
-import { CarDetailService } from 'src/app/services/car-detail.service';
 import { CarService } from 'src/app/services/car.service';
-import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -15,19 +11,17 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-
   cars: CarDetail[] = [];
-  dataStatus : boolean = false;
-  filterText = ""
- 
+  dataStatus: boolean = false;
+  filterText = '';
+
   adminControlStatus = false;
   constructor(
     private carService: CarService,
-    private authService : AuthService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private toastrService : ToastrService
-  ) {   
-  }
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -45,11 +39,11 @@ export class CarComponent implements OnInit {
   getCars() {
     this.carService.getCars().subscribe((response) => {
       this.cars = response.data;
-      if(response.success){
+      if (response.success) {
         this.dataStatus = true;
       }
-      if(this.cars.length === 0){
-        this.toastrService.warning("Araba bulunmamaktadır.","Uyarı")
+      if (this.cars.length === 0) {
+        this.toastrService.warning('Araba bulunmamaktadır.', 'Uyarı');
       }
     });
   }
@@ -57,11 +51,11 @@ export class CarComponent implements OnInit {
   getCarsByColor(colorId: number) {
     this.carService.getCarsByColor(colorId).subscribe((response) => {
       this.cars = response.data;
-      if(response.success){
+      if (response.success) {
         this.dataStatus = true;
       }
-      if(this.cars.length === 0){
-        this.toastrService.warning("Araba bulunmamaktadır.","Uyarı")
+      if (this.cars.length === 0) {
+        this.toastrService.warning('Araba bulunmamaktadır.', 'Uyarı');
       }
     });
   }
@@ -69,16 +63,16 @@ export class CarComponent implements OnInit {
   getCarsByBrand(brandId: number) {
     this.carService.getCarsByBrand(brandId).subscribe((response) => {
       this.cars = response.data;
-      if(response.success){
+      if (response.success) {
         this.dataStatus = true;
       }
-      if(this.cars.length === 0){
-        this.toastrService.warning("Araba bulunmamaktadır.","Uyarı")
+      if (this.cars.length === 0) {
+        this.toastrService.warning('Araba bulunmamaktadır.', 'Uyarı');
       }
     });
   }
 
-  adminControl(){
+  adminControl() {
     this.adminControlStatus = this.authService.adminControl();
   }
 }

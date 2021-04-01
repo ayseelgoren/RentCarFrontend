@@ -6,32 +6,33 @@ import { ColorService } from 'src/app/services/color.service';
 @Component({
   selector: 'app-color',
   templateUrl: './color.component.html',
-  styleUrls: ['./color.component.css']
+  styleUrls: ['./color.component.css'],
 })
 export class ColorComponent implements OnInit {
-  colors : Color[];
-  dataStatus : boolean = false;
-  filterText = "";
+  colors: Color[];
+  dataStatus: boolean = false;
+  filterText = '';
   adminControlStatus = false;
-  
-  constructor(private colorService : ColorService,
-    private authService : AuthService) { }
+
+  constructor(
+    private colorService: ColorService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getColors();
     this.adminControl();
   }
 
-  getColors(){
-    this.colorService.getColors().subscribe(response => {
-      this.colors = response.data
-      if(response.success){
+  getColors() {
+    this.colorService.getColors().subscribe((response) => {
+      this.colors = response.data;
+      if (response.success) {
         this.dataStatus = true;
       }
-    })
+    });
   }
-  adminControl(){
+  adminControl() {
     this.adminControlStatus = this.authService.adminControl();
   }
-
 }

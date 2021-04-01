@@ -17,18 +17,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   profileForm: FormGroup;
-  userId : number;
-  user : User;
+  userId: number;
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private authService : AuthService,
-    private userService : UserService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +38,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       firstName: [user.firstName, Validators.required],
       lastName: [user.lastName, Validators.required],
-      email: [{value:user.email,disabled: true}, Validators.required],
+      email: [{ value: user.email, disabled: true }, Validators.required],
     });
   }
 
@@ -47,31 +46,38 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       console.log(this.profileForm.value);
       let userModel = Object.assign({}, this.profileForm.value);
-      this.user.firstName = userModel.firstName
-      this.user.lastName = userModel.lastName
-      this.userService.update(this.user).subscribe(response=>{
-        console.log(response);
-        this.authService.signOut();
-        this.toastrService.success(response.message+" Tekrar giriş yapınız.");
-      },error =>{
-        console.log(error);
-        this.toastrService.error(error.error);
-      })
+      this.user.firstName = userModel.firstName;
+      this.user.lastName = userModel.lastName;
+      this.userService.update(this.user).subscribe(
+        (response) => {
+          console.log(response);
+          this.authService.signOut();
+          this.toastrService.success(
+            response.message + ' Tekrar giriş yapınız.'
+          );
+        },
+        (error) => {
+          console.log(error);
+          this.toastrService.error(error.error);
+        }
+      );
     } else {
       this.toastrService.error('Formunuz eksik', 'Dikkat');
     }
   }
 
-  getUserInformation(){
-      this.userId = this.authService.getUserId();
-      this.userService.getById(this.userId).subscribe(response => {
+  getUserInformation() {
+    this.userId = this.authService.getUserId();
+    this.userService.getById(this.userId).subscribe(
+      (response) => {
         console.log(response);
-        this.user = response.data
-        
+        this.user = response.data;
+
         this.createProfileForm(this.user);
-      },error => {
+      },
+      (error) => {
         console.log(error);
-        
-      })
+      }
+    );
   }
 }

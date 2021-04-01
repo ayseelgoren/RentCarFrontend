@@ -1,31 +1,35 @@
-
 <li class="nav-item dropdown">
-    <a
-      class="nav-link dropdown-toggle"
-      href="#"
-      id="navbarDropdown"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Sepet
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li>
-        <a
-          class="dropdown-item"
-          *ngFor="let item of carsItems"
-          routerLink="cars/{{ item.car.id }}"
-          >
-          <button type="button" class="btn btn-primary">
-            {{item.car.description}} <span class="badge bg-secondary"> {{item.quantity}}</span>
-          </button>
-          <button type="button" class="btn btn-danger left" (click)="deleteFromCart(item.car)"> Sil  </button>
-        </a
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdown"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Sepet
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li>
+      <a
+        class="dropdown-item"
+        *ngFor="let item of carsItems"
+        routerLink="cars/{{ item.car.id }}"
+      >
+        <button type="button" class="btn btn-primary">
+          {{ item.car.description }}
+          <span class="badge bg-secondary"> {{ item.quantity }}</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger left"
+          (click)="deleteFromCart(item.car)"
         >
-      </li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" routerLink="baskets">Sepete Git</a></li>
-    </ul>
-  </li>
-  
+          Sil
+        </button>
+      </a>
+    </li>
+    <li><hr class="dropdown-divider" /></li>
+    <li><a class="dropdown-item" routerLink="baskets">Sepete Git</a></li>
+  </ul>
+</li>
